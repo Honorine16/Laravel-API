@@ -27,6 +27,7 @@ class AuthController extends Controller
             'name' => $registerRequest->name,
             'email' => $registerRequest->email,
             'password' => $registerRequest->password,
+            'passwordConfirm' => $registerRequest->passwordConfirm,
         ];
 
         DB::beginTransaction();
@@ -58,7 +59,7 @@ class AuthController extends Controller
                 $user, 
                 [], 
                 'Opération effectuée.', 
-                $user ? 200 : 401
+                200 
             );
         } catch (\Throwable $th) {
             return ApiResponse::rollback($th);
